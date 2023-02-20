@@ -1,11 +1,12 @@
- .global _start
+	.global _start
 _start:
 _read:
-        MOV R7, #3
-        MOV R0, #0
-        MOV R2, #1
-        LDR R1, =input
-        SWI 0
+	MOV R7, #3
+	MOV R0, #0
+	MOV R2, #1
+	LDR R1, =input
+	SWI 0
+
 
 
 _compare:
@@ -103,10 +104,14 @@ _outnine:
         SWI 0
         B _exit
 
+_exit:
+	MOV R7, #1
+	SWI 0
 
- .data
+
+	.data
 input: .space 1
-one:    .ascii  "one\n"
+one:	.ascii	"one\n"
 two:    .ascii  "two\n"
 tree:    .ascii  "tree\n"
 four:    .ascii  "four\n"
