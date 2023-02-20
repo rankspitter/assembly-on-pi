@@ -11,6 +11,8 @@ _read:
 
 _compare:
         LDRB R2, [R1]
+        CMP R2, #'0'
+        BEQ _outzero
         CMP R2, #'1'
         BEQ _outone
         CMP R2, #'2'
@@ -32,6 +34,15 @@ _compare:
         B _exit
 
 
+
+_outzero:
+        MOV R7, #4
+        MOV R0, #1
+        MOV R2,#4
+        LDR R1, =zero
+        SWI 0
+        B _exit
+
 _outone:
         MOV R7, #4
         MOV R0, #1
@@ -51,7 +62,7 @@ _outtwo:
 _outtree:
         MOV R7, #4
         MOV R0, #1
-        MOV R2,#4
+        MOV R2,#5
         LDR R1, =tree
         SWI 0
         B _exit
@@ -59,7 +70,7 @@ _outtree:
 _outfour:
         MOV R7, #4
         MOV R0, #1
-        MOV R2,#4
+        MOV R2,#5
         LDR R1, =four
         SWI 0
         B _exit
@@ -67,7 +78,7 @@ _outfour:
 _outfive:
         MOV R7, #4
         MOV R0, #1
-        MOV R2,#4
+        MOV R2,#5
         LDR R1, =five
         SWI 0
         B _exit
@@ -83,7 +94,7 @@ _outsix:
 _outseven:
         MOV R7, #4
         MOV R0, #1
-        MOV R2,#4
+        MOV R2,#5
         LDR R1, =seven
         SWI 0
         B _exit
@@ -91,7 +102,7 @@ _outseven:
 _outeight:
         MOV R7, #4
         MOV R0, #1
-        MOV R2,#4
+        MOV R2,#5
         LDR R1, =eight
         SWI 0
         B _exit
@@ -99,7 +110,7 @@ _outeight:
 _outnine:
         MOV R7, #4
         MOV R0, #1
-        MOV R2,#4
+        MOV R2,#5
         LDR R1, =nine
         SWI 0
         B _exit
@@ -111,9 +122,10 @@ _exit:
 
 	.data
 input: .space 1
+zero:    .ascii	"zero\n"
 one:	.ascii	"one\n"
 two:    .ascii  "two\n"
-tree:    .ascii  "tree\n"
+tree:    .ascii  "three\n"
 four:    .ascii  "four\n"
 five:    .ascii  "five\n"
 six:    .ascii  "six\n"
